@@ -47,7 +47,7 @@ const webpackCommonConfig = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin("main.css")
+		new ExtractTextPlugin("static/main.css")
 	],
 	externals: [{
 		window: "window"

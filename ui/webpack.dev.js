@@ -11,8 +11,8 @@ const webpackDevConfig = {
 	watch: true,
 	output: {
 		path: dirDist,
-		filename: "[name].js",
-		publicPath: `/static/`
+		filename: "static/[name].js",
+		publicPath: `/`
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
