@@ -1,5 +1,6 @@
 ## Start
 
+rename config.example.js to config.js
 edit config.js
 run redis
 
