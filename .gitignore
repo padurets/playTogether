@@ -1,0 +1,13 @@
+# Editors
+.vscode
+
+# macOS:
+.DS_Store
+
+# Node components:
+node_modules
+npm-debug.log
+.enb/
+
+# Frontend build files:
+dist

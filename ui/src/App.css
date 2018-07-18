@@ -1,0 +1,20 @@
+.root {
+	font-family: "Tahoma";
+	font-size: 10pt;
+	display: flex;
+	padding: 10px 15px;
+	width: 100vw;
+	height: 100vh;
+
+	& * {
+		box-sizing: border-box;
+	}
+}
+
+.leftColumn {
+	width: 250px;
+}
+
+.rightColumn {
+	flex-grow: 1;
+}

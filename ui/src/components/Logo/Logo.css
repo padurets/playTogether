@@ -1,0 +1,27 @@
+.root {
+	color: #444;
+	font-size: 12pt;
+	margin-bottom: 15px;
+}
+
+.logo {
+	font-size: 30pt;
+	margin-bottom: 5px;
+}
+
+.regularPart {
+	font-weight: lighter;
+}
+
+.accentPart {
+	font-weight: bold;
+	color: #2386ff;
+}
+
+.description {
+	color: #666;
+	/* background: #2386ff;
+	border-top: 2px solid #2574d4;
+	color: #fff; */
+	/* padding: 3px 0 5px; */
+}

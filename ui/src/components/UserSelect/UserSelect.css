@@ -1,0 +1,15 @@
+.textarea {
+	background: #f7f7f7;
+	border: 1px solid #c7c7c7;
+	/* border: none; */
+	font-size: 10pt;
+	max-width: 100%;
+	padding: 10px 15px;
+	resize: none;
+	width: 100%;
+
+	&:focus {
+		outline: none;
+		border-color: #999;
+	}
+}
