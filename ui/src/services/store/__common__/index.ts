@@ -1,7 +1,7 @@
 // import { Reducer } from "redux";
 import * as status from "./status";
 import * as StoreTypes from "../types";
-import * as Store from "../";
+import * as Store from "..";
 
 const addStatusToActionName = (actionName: string, status: status.Value) =>
 	`${actionName}/${status}`;

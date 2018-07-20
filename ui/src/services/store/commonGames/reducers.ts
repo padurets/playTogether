@@ -1,4 +1,4 @@
-import { reduceAsyncActions } from "../_common";
+import { reduceAsyncActions } from "../__common__";
 import { LIST } from "./actionNames";
 
-export const postsList = reduceAsyncActions({ LIST });
+export const commonGames = reduceAsyncActions({ LIST });

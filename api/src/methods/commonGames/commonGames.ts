@@ -4,10 +4,7 @@
 
 import * as express from "express";
 import * as steam from "../../services/steam";
-
-export interface SuccesResponse {
-	commonGames: steam.Games;
-}
+import * as Types from "./types";
 
 const findUsersCommonGames = (usersGames: steam.UsersGames): number[] => {
 	interface GameOwners {
@@ -36,6 +33,15 @@ const findUsersCommonGames = (usersGames: steam.UsersGames): number[] => {
 	return commonGames;
 };
 
+const filterMultiplayerGames = (games: steam.SteamApiGames) =>
+	games.filter(game => game.tags.hasOwnProperty("Multiplayer"));
+
+const formatGames = (game: steam.SteamApiGames): Types.Games =>
+	game.map((game: steam.SteamApiGame) => {
+		const { appid: id, name, tags } = game;
+		return { id, name, tags };
+	});
+
 async function getCommonGames(req: express.Request, res: express.Response) {
 	const { users: usersQuery } = req.query;
 
@@ -43,15 +49,21 @@ async function getCommonGames(req: express.Request, res: express.Response) {
 		return res.json({ commonGames: [] });
 	}
 
-	const usernames = usersQuery.split(",");
-	const usersId = await steam.getUsersId(usernames);
-	const usersGames = await steam.getUsersGames(usersId, {
-		loadUserInfo: false
-	});
-	const commonGames = findUsersCommonGames(usersGames);
-	const gamesDetail = await steam.getGamesInfo(commonGames);
+	try {
+		const usernames = usersQuery.split(",");
+		const usersId = await steam.getUsersId(usernames);
+		const usersGames = await steam.getUsersGames(usersId);
+		const commonGames = findUsersCommonGames(usersGames);
+		const gamesDetail = await steam.getGamesInfo(commonGames);
+		const multiplayerGames = filterMultiplayerGames(gamesDetail);
+		const formattedGame = formatGames(multiplayerGames);
+		const response: Types.SuccesResponse = { commonGames: formattedGame };
 
-	res.json({ commonGames: gamesDetail });
+		res.json(response);
+	} catch (e) {
+		res.statusCode = 502;
+		res.json({ error: true });
+	}
 }
 
 export default getCommonGames;

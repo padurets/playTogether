@@ -1,0 +1,35 @@
+@import "../../assets/styles/vars.css";
+
+.button {
+	appearance: none;
+	background: transparent;
+	border: 1px solid #1e76e2;
+	border-radius: 4px;
+	box-sizing: border-box;
+	display: inline-block;
+	font-size: 12pt;
+	margin: 0;
+	position: relative;
+	text-decoration: none;
+	/* transition: var(--animationSpeedRegular); */
+	padding: 10px 20px;
+
+	&:focus {
+		outline: none;
+		opacity: 0.8;
+	}
+
+	&:disabled {
+		cursor: default;
+		opacity: 0.48;
+	}
+
+	&:not(:disabled):hover {
+		cursor: pointer;
+	}
+}
+
+.primary {
+	background: var(--colorPrimary);
+	color: #fff;
+}

@@ -1,5 +1,7 @@
-import * as ApiCommonGames from "../../../../api/src/methods/commonGames/commonGames";
+import * as CommonGamesApi from "../../../../api/src/methods/commonGames/types";
 import * as status from "./__common__/status";
+
+export type Status = status.Instance;
 
 export type ActionNamesIndex = { [key: string]: string };
 
@@ -25,7 +27,7 @@ export interface Router {
 }
 
 export interface States {
-	commonGames: State<ApiCommonGames.SuccesResponse>;
+	commonGames: State<CommonGamesApi.Games>;
 	router: Router;
 }
 

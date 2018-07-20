@@ -1,4 +1,7 @@
+@import "../../assets/styles/vars.css";
+
 .root {
+	display: inline-block;
 	color: #444;
 	font-size: 12pt;
 	margin-bottom: 15px;
@@ -15,7 +18,7 @@
 
 .accentPart {
 	font-weight: bold;
-	color: #2386ff;
+	color: var(--colorPrimary);
 }
 
 .description {

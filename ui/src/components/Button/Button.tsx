@@ -1,47 +1,47 @@
 import * as classNames from "classnames";
 import * as React from "react";
-import * as ButtonType from "./types";
+import { Link } from "react-router-dom";
 import * as styles from "./Button.css";
-import * as Component from "../Component";
 
-const { COLORS, SIZES, TEXT_ALIGN } = Component;
+const COLORS = {
+	primary: "primary"
+};
 
-class Button extends React.PureComponent<ButtonType.Props> {
-	public static defaultProps: Partial<ButtonType.Props> = {
-		textAlign: TEXT_ALIGN.center
-	};
+type Color = "primary";
 
+export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
+	color?: Color;
+	href?: string;
+	disabled?: boolean;
+}
+
+class Button extends React.PureComponent<Props> {
 	public render() {
 		const {
 			children,
-			label,
 			color = COLORS.primary,
 			className,
-			padding = SIZES.m,
-			fluid = false,
-			textAlign,
+			href,
 			...props
 		} = this.props;
 		const classes = classNames(
 			styles.button,
 			{
-				[styles.primary]: color === COLORS.primary,
-				[styles.light]: color === COLORS.light,
-				[styles.regular]: color === COLORS.regular,
-				[styles.warning]: color === COLORS.warning,
-				[styles.danger]: color === COLORS.danger,
-				[styles.paddingRegular]: padding === SIZES.m,
-				[styles.paddingSmall]: padding === SIZES.s
+				[styles.primary]: color === COLORS.primary
 			},
 			className
 		);
 
-		return (
-			<button {...props} aria-label={label} className={classes}>
+		return href ? (
+			<Link {...props} className={classes} to={href}>
+				{children}
+			</Link>
+		) : (
+			<button {...props} className={classes}>
 				{children}
 			</button>
 		);
 	}
 }
 
-export default Component.BaseComponent<ButtonType.Props>(Button);
+export default Button;
