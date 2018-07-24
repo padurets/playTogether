@@ -1,4 +1,5 @@
 import * as React from "react";
+import Text from "../Text/Text";
 import * as styles from "./Logo.css";
 
 class Logo extends React.PureComponent {
@@ -9,7 +10,9 @@ class Logo extends React.PureComponent {
 					<span className={styles.regularPart}>Play</span>
 					<span className={styles.accentPart}>Together</span>
 				</div>
-				{/* <div className={styles.description}>in your common games in steam</div> */}
+				<Text color="light" size="sm" className={styles.description}>
+					Общие мультиплеерные игры
+				</Text>
 			</div>
 		);
 	}

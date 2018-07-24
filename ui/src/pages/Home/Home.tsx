@@ -11,7 +11,9 @@ class HomePage extends React.PureComponent {
 		return (
 			<Layout className={styles.root}>
 				<Text className={styles.note}>
-					Введите ссылки на профили steam, разделив их пробелом или новой
+					Найдите общие мультиплеерные игры в Steam у вас и ваших друзей!
+					<br />
+					Для этого введите ссылки на профили, разделив их пробелом или новой
 					стройкой:
 				</Text>
 				<UserSelect submitButtonText="Выбрать" />

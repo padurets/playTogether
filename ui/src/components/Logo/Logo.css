@@ -22,9 +22,8 @@
 }
 
 .description {
-	color: #666;
-	/* background: #2386ff;
-	border-top: 2px solid #2574d4;
-	color: #fff; */
-	/* padding: 3px 0 5px; */
+	background: #fff;
+	box-shadow: 2px 1px 6px rgba(153, 153, 153, 0.2);
+	border-radius: var(--borderRadiusRegular);
+	padding: 7px 15px 5px 15px;
 }
