@@ -1,0 +1,37 @@
+.root {
+	margin: 0;
+}
+
+.h1 {
+	font-size: 22pt;
+	margin-bottom: 20px;
+}
+.h2 {
+	font-size: 18pt;
+	margin-bottom: 15px;
+}
+.h3 {
+	font-size: 14pt;
+	margin-bottom: 15px;
+}
+.h4 {
+	font-size: 12pt;
+	margin-bottom: 10px;
+}
+.h5 {
+	font-size: 12pt;
+	margin-bottom: 10px;
+}
+
+.h6 {
+}
+
+.weightNormal {
+	font-weight: normal;
+}
+.weightBold {
+	font-weight: bold;
+}
+.weightLight {
+	font-weight: lighter;
+}

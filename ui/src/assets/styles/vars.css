@@ -1,6 +1,11 @@
 :root {
-	--colorPrimary: #2386ff;
-	--colorLight: #dedede;
+	--colorPrimary: #2e5470;
+	--colorLight: #999;
 	--colorWarning: #ffc107;
+	--colorSuccess: #4ec765;
 	--colorDanger: #cd5654;
+
+	--colorTextRegular: #333;
+
+	--borderRadiusRegular: 4px;
 }

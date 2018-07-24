@@ -1,0 +1,45 @@
+@import "../../assets/styles/vars.css";
+
+.root {
+	align-items: center;
+	display: flex;
+	height: 50px;
+	padding: 5px;
+	text-decoration: none;
+	color: var(--colorTextRegular);
+	cursor: default;
+
+	&.pointered {
+		cursor: pointer;
+	}
+
+	&:hover {
+		background: #f2f2f2;
+	}
+}
+
+.avatar {
+	height: 40px;
+	margin-right: 10px;
+	width: 40px;
+	flex: 0 0 40px;
+
+	& > img {
+		height: 100%;
+		width: 100%;
+	}
+}
+
+.profileInfo {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	overflow: hidden;
+}
+
+.name {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 100%;
+}

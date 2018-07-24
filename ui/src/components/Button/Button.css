@@ -1,11 +1,16 @@
 @import "../../assets/styles/vars.css";
 
+:root {
+	--buttonShadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+}
+
 .button {
 	appearance: none;
 	background: transparent;
-	border: 1px solid #1e76e2;
-	border-radius: 4px;
+	border: 1px solid color(var(--colorPrimary) blackness(65%));
+	border-radius: var(--borderRadiusRegular);
 	box-sizing: border-box;
+	box-shadow: var(--buttonShadow);
 	display: inline-block;
 	font-size: 12pt;
 	margin: 0;
@@ -16,12 +21,14 @@
 
 	&:focus {
 		outline: none;
-		opacity: 0.8;
+		box-shadow: inset var(--buttonShadow);
+		border-color: color(var(--colorPrimary) blackness(90%));
 	}
 
 	&:disabled {
 		cursor: default;
-		opacity: 0.48;
+		box-shadow: none;
+		opacity: 0.7;
 	}
 
 	&:not(:disabled):hover {
@@ -29,7 +36,16 @@
 	}
 }
 
+.fluid {
+	width: 100%;
+}
+
 .primary {
 	background: var(--colorPrimary);
-	color: #fff;
+	color: color(var(--colorPrimary) lightness(70%));
+
+	&:focus {
+		background-color: color(var(--colorPrimary) blackness(70%));
+		color: color(var(--colorPrimary) lightness(60%));
+	}
 }

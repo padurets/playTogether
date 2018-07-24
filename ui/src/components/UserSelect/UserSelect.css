@@ -1,15 +1,20 @@
+@import "../../assets/styles/vars.css";
+
 .root {
 	margin-left: auto;
 	margin-right: auto;
+	width: 100%;
 	max-width: 500px;
 }
 
 .textarea {
 	background: #f7f7f7;
 	border: 1px solid #c7c7c7;
+	border-radius: var(--borderRadiusRegular);
 	/* border: none; */
 	font-size: 10pt;
 	max-width: 100%;
+	margin: 15px 0;
 	padding: 10px 15px;
 	resize: none;
 	height: 200px;
@@ -21,11 +26,13 @@
 	}
 }
 
-.submit {
-	text-align: right;
+.errorList {
+	font-size: 10pt;
+	line-height: 14pt;
+	margin: 0;
+	padding: 0 20px;
 }
 
-.note {
-	font-size: 80%;
-	margin: 5px 0 10px 0;
+.formFooter {
+	text-align: right;
 }

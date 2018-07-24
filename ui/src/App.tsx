@@ -4,9 +4,9 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Route, Switch } from "react-router";
 import { ConnectedRouter } from "react-router-redux";
-import UserSelect from "./components/UserSelect/UserSelect";
 import * as Store from "./services/store";
-import Catalog from "./components/Catalog/Catalog";
+import HomePage from "./pages/Home/Home";
+import CatalogPage from "./pages/Catalog/Catalog";
 
 const generateRootNode = () => {
 	const node = document.createElement("div");
@@ -18,8 +18,8 @@ render(
 	<Provider store={Store.reduxStore}>
 		<ConnectedRouter history={Store.history}>
 			<Switch>
-				<Route path="/commonGames/" component={Catalog} />
-				<Route component={UserSelect} />
+				<Route path="/commonGames/" component={CatalogPage} />
+				<Route component={HomePage} />
 			</Switch>
 		</ConnectedRouter>
 	</Provider>,

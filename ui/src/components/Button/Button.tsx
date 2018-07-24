@@ -12,6 +12,7 @@ type Color = "primary";
 export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
 	color?: Color;
 	href?: string;
+	isFluid?: boolean;
 	disabled?: boolean;
 }
 
@@ -21,13 +22,15 @@ class Button extends React.PureComponent<Props> {
 			children,
 			color = COLORS.primary,
 			className,
+			isFluid,
 			href,
 			...props
 		} = this.props;
 		const classes = classNames(
 			styles.button,
 			{
-				[styles.primary]: color === COLORS.primary
+				[styles.primary]: color === COLORS.primary,
+				[styles.fluid]: !!isFluid
 			},
 			className
 		);

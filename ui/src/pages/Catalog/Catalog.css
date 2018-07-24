@@ -1,0 +1,60 @@
+@import "../../assets/styles/vars.css";
+
+.root {
+	display: flex;
+
+	@media (width < 1024px) {
+		flex-direction: column;
+	}
+}
+
+.users {
+	padding: 10px 20px;
+	border-bottom: 1px solid #262626;
+	border-top: 1px solid #262626;
+	margin-right: 20px;
+}
+
+.widget {
+	margin-bottom: 20px;
+}
+
+.leftColumn {
+	flex: 1 1 270px;
+
+	@media (width >= 1024px) {
+		margin-bottom: 20px;
+		max-width: 290px;
+	}
+}
+
+.leftColumnlayout {
+	background: #fff;
+	box-shadow: 2px 1px 6px rgba(153, 153, 153, 0.2);
+	border-radius: var(--borderRadiusRegular);
+	padding: 20px 10px;
+}
+
+.rightColumn {
+	flex: 1 1 auto;
+
+	& .rightColumnTitle {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	@media (width >= 1024px) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+.errorPane {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.rightColumnTitle {
+	padding-top: 20px;
+}

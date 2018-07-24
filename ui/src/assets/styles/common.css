@@ -5,6 +5,10 @@ body {
 	position: relative;
 }
 
+body {
+	background: #fbfbfb;
+}
+
 div,
 header,
 footer {

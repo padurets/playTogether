@@ -27,7 +27,7 @@ export interface Router {
 }
 
 export interface States {
-	commonGames: State<CommonGamesApi.Games>;
+	commonGames: State<CommonGamesApi.SuccesResponse>;
 	router: Router;
 }
 

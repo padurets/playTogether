@@ -1,0 +1,25 @@
+@import "../../assets/styles/vars.css";
+
+.root {
+	border-width: 1px;
+	border-style: solid;
+	border-radius: var(--borderRadiusRegular);
+	padding: 10px 20px;
+	width: 100%;
+
+	&.offset {
+		margin: 10px 0;
+	}
+}
+
+.danger {
+	border-color: color(var(--colorDanger) alpha(-60%));
+	background: color(var(--colorDanger) alpha(-80%));
+	color: color(var(--colorDanger) blackness(20%));
+}
+
+.warning {
+	border-color: color(var(--colorWarning) alpha(-60%));
+	background: color(var(--colorWarning) alpha(-80%));
+	color: color(var(--colorWarning) blackness(20%));
+}

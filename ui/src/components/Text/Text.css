@@ -1,0 +1,55 @@
+@import "../../assets/styles/vars.css";
+
+.root {
+	margin: 0;
+	display: inline-block;
+}
+
+.colorPrimary {
+	color: var(--colorPrimary);
+}
+
+.colorRegular {
+	color: var(--colorPrimary);
+}
+
+.colorLight {
+	color: var(--colorLight);
+}
+
+.colorWarning {
+	color: var(--colorWarning);
+}
+
+.colorDanger {
+	color: var(--colorDanger);
+}
+
+.colorSuccess {
+	color: var(--colorSuccess);
+}
+
+.sizeSm {
+	font-size: 10pt;
+	line-height: 14pt;
+}
+
+.sizeRg {
+	font-size: 12pt;
+	line-height: 16pt;
+}
+
+.sizeLg {
+	font-size: 14pt;
+	line-height: 18pt;
+}
+
+.weightNormal {
+	font-weight: normal;
+}
+.weightBold {
+	font-weight: bold;
+}
+.weightLight {
+	font-weight: lighter;
+}

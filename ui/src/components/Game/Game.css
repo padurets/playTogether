@@ -1,13 +1,19 @@
+@import "../../assets/styles/vars.css";
+
 .root {
 	border: 1px solid #262626;
-	border-radius: 3px;
+	border-radius: var(--borderRadiusRegular);
 	color: #f2f2f2;
 	display: inline-block;
-	text-decoration: none;
-	margin: 10px 1%;
+	flex: 1 200px;
+	margin: 10px;
 	position: relative;
+	text-decoration: none;
 	height: 120px;
-	width: 18%;
+
+	&:hover .preview > img {
+		opacity: 0.8;
+	}
 }
 
 .title {
@@ -33,9 +39,5 @@
 		height: 100%;
 		opacity: 0.5;
 		transition: 100ms;
-	}
-
-	&:hover > img {
-		opacity: 0.8;
 	}
 }

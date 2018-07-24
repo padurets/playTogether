@@ -4,13 +4,6 @@
 
 import asyncMap from "../../../lib/asyncMap";
 import steamOriginApiRequest from "../__common__/steamOriginApiRequest";
-import { UserSummary, getUsersSummary } from "../getUsersInfo/getUsersInfo";
-
-interface UserSteamId {
-	steamid: string;
-}
-
-type UserInfo = UserSteamId | UserSummary;
 
 export interface UserGame {
 	appid: number;
@@ -18,41 +11,28 @@ export interface UserGame {
 }
 
 export interface UserGames {
-	user: UserInfo;
+	ownerId: string;
 	games: UserGame[];
 }
 
 export type UsersGames = UserGames[];
 
-interface Options {
-	loadUserInfo: boolean;
-}
-
-const defaultOptions = {
-	loadUserInfo: true,
-	loadGameInfo: true
-};
-
-async function getUserGame(user: UserInfo): Promise<UserGames> {
+async function getUserGame(steamId: string): Promise<UserGames> {
 	const games = await steamOriginApiRequest(
-		`IPlayerService/GetOwnedGames/v0001/?steamid=${user.steamid}&format=json`
-	).then(res => res.games);
+		`IPlayerService/GetOwnedGames/v0001/?steamid=${steamId}&format=json`
+	).then(res => {
+		const { games = [] } = res;
+		return games;
+	});
 
 	return {
-		user,
+		ownerId: steamId,
 		games
 	};
 }
 
-export async function getUsersGames(steamIds: string[], opt?: Options) {
-	const options = Object.assign({}, defaultOptions, opt);
-	const usersInfo = options.loadUserInfo
-		? await getUsersSummary(steamIds)
-		: steamIds.map(steamid => ({ steamid }));
-	const usersGames = await asyncMap<UserGames, UserInfo>(
-		usersInfo,
-		getUserGame
-	);
+export async function getUsersGames(steamIds: string[]) {
+	const usersGames = await asyncMap<UserGames, string>(steamIds, getUserGame);
 
 	return usersGames;
 }

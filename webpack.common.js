@@ -38,7 +38,7 @@ const webpackCommonConfig = {
 			},
 			{
 				test: /\.(ico|jpg|svg|jpeg|png|gif)(\?.*)?$/,
-				loader: "file-loader?name=img/[hash].[ext]"
+				loader: "file-loader?name=static/img/[hash].[ext]"
 			},
 			{
 				test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
