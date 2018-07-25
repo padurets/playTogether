@@ -31,8 +31,8 @@ class User extends React.PureComponent<Props> {
 				</span>
 				<span className={styles.profileInfo}>
 					<Text className={styles.name}>{name}</Text>
-					{requestStatus === 1 ? null : (
-						<Text size="sm" color="danger">
+					{!status ? null : (
+						<Text size="sm" color={requestStatus !== 1 ? "danger" : "light"}>
 							{status}
 						</Text>
 					)}

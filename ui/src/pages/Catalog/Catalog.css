@@ -16,11 +16,11 @@
 }
 
 .leftColumn {
-	flex: 1 1 270px;
+	flex: 1 1 300px;
 
 	@media (width >= 1024px) {
 		margin-bottom: 20px;
-		max-width: 290px;
+		max-width: 300px;
 	}
 }
 
@@ -52,5 +52,5 @@
 }
 
 .rightColumnTitle {
-	padding-top: 20px;
+	padding-top: 24px;
 }

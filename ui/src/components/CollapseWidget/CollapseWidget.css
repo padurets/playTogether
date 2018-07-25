@@ -7,7 +7,7 @@
 .labelIcon {
 	display: inline-block;
 	width: 0;
-	height: 16pt;
+	height: 20px;
 	position: relative;
 
 	&::before {
