@@ -44,7 +44,7 @@ export async function getGameDetail(appId: number) {
 	let gameInfo = await redis.getAsyncJson(gameKey);
 
 	if (!gameInfo) {
-		const gameInfo = await getGameFromSteamSpy(appId);
+		gameInfo = await getGameFromSteamSpy(appId);
 		redis.setAsyncJson(gameKey, gameInfo);
 	}
 
