@@ -15,10 +15,6 @@
 	margin-right: 20px;
 }
 
-.widget {
-	margin-bottom: 20px;
-}
-
 .leftColumn {
 	flex: 1 1 270px;
 
@@ -30,9 +26,9 @@
 
 .leftColumnlayout {
 	background: #fff;
-	box-shadow: 2px 1px 6px rgba(153, 153, 153, 0.2);
+	box-shadow: var(--shadowRegular);
 	border-radius: var(--borderRadiusRegular);
-	padding: 20px 10px;
+	padding: 20px 10px 10px;
 }
 
 .rightColumn {

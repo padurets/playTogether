@@ -14,7 +14,7 @@ class HomePage extends React.PureComponent {
 					Найдите общие мультиплеерные игры в Steam у вас и ваших друзей!
 					<br />
 					Для этого введите ссылки на профили, разделив их пробелом или новой
-					стройкой:
+					строкой:
 				</Text>
 				<UserSelect submitButtonText="Выбрать" />
 			</Layout>

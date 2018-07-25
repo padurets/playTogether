@@ -3,6 +3,7 @@ import * as cn from "classnames";
 import * as queryString from "query-string";
 import * as sort from "fast-sort";
 import Layout from "../../components/Layout/Layout";
+import CollapseWidget from "../../components/CollapseWidget/CollapseWidget";
 import GamesList from "../../components/GamesList/GamesList";
 import Button from "../../components/Button/Button";
 import Title from "../../components/Title/Title";
@@ -11,13 +12,13 @@ import Pane from "../../components/Pane/Pane";
 import * as UserSelect from "../../components/UserSelect/UserSelect";
 import * as Store from "../../services/store";
 import * as CommonGames from "../../../../api/src/methods/commonGames/types";
-import * as UsersInfo from "../../../../api/src/services/steam/getUsersInfo/types";
 import * as styles from "./Catalog.css";
 
 interface Props {
 	status: Store.Status;
-	games?: CommonGames.Games;
-	users?: UsersInfo.UsersInfo;
+	games?: CommonGames.Game[];
+	usersIncluded: CommonGames.User[];
+	usersExcluded: CommonGames.User[];
 	router: Store.Router;
 	errorMessage: CommonGames.ErrorMessage;
 }
@@ -65,31 +66,6 @@ export class Catalog extends React.PureComponent<Props> {
 		Store.routes.to(`/`);
 	};
 
-	private splitUsersByStatus = (usersInfo: UsersInfo.UsersInfo) => {
-		const { included, excluded } = usersInfo.reduce(
-			(list, userInfo) => {
-				if (userInfo.statusCode === 1) {
-					list.included.push(userInfo);
-				} else {
-					list.excluded.push(userInfo);
-				}
-
-				return list;
-			},
-			{
-				included: [] as UsersInfo.UsersInfo,
-				excluded: [] as UsersInfo.UsersInfo
-			}
-		);
-		const usersIncludeInSearch = sort(included).asc("name");
-		const usersExcludedFromSearch = sort(excluded).desc("statusCode");
-
-		return {
-			usersIncludeInSearch,
-			usersExcludedFromSearch
-		};
-	};
-
 	public render() {
 		const { status, errorMessage } = this.props;
 		const rootClassNames = cn(styles.root);
@@ -101,39 +77,39 @@ export class Catalog extends React.PureComponent<Props> {
 		if (status.isFail) {
 			return <Layout isFail={true} />;
 		}
-
-		const {
-			usersIncludeInSearch,
-			usersExcludedFromSearch
-		} = this.splitUsersByStatus(this.props.users as UsersInfo.UsersInfo);
-		const games = sort(this.props.games as CommonGames.Games).asc("name");
+		const usersIncludeInSearch = sort(this.props.usersIncluded).asc("name");
+		const usersExcludedFromSearch = sort(this.props.usersExcluded).desc(
+			"statusCode"
+		);
+		const games = sort(this.props.games as CommonGames.Game[]).asc("name");
 
 		return (
 			<Layout>
 				<div className={rootClassNames}>
 					<div className={styles.leftColumn}>
 						<div className={styles.leftColumnlayout}>
-							<div className={styles.widget}>
-								<Title weight="normal" color="light" type="h3">
-									Выбранные профили:
-								</Title>
+							<CollapseWidget
+								isExpanded={true}
+								title={`Выбранные профили (${usersIncludeInSearch.length})`}
+							>
 								{usersIncludeInSearch.map(
-									(user: UsersInfo.UserInfo, i: number) => (
+									(user: CommonGames.User, i: number) => (
 										<User {...user} key={i} />
 									)
 								)}
-							</div>
+							</CollapseWidget>
 							{!usersExcludedFromSearch.length ? null : (
-								<div className={styles.widget}>
-									<Title weight="normal" color="light" type="h3">
-										Исключены из поиска:
-									</Title>
+								<CollapseWidget
+									title={`Исключены из поиска (${
+										usersExcludedFromSearch.length
+									})`}
+								>
 									{usersExcludedFromSearch.map(
-										(user: UsersInfo.UserInfo, i: number) => (
+										(user: CommonGames.User, i: number) => (
 											<User {...user} key={i} />
 										)
 									)}
-								</div>
+								</CollapseWidget>
 							)}
 
 							<Button isFluid={true} onClick={this.onClickOther}>
@@ -167,9 +143,16 @@ const mapStateToProps = (state: Store.States) => {
 	const { payload, status } = commonGames;
 
 	if (status.isSuccess && payload) {
-		const { games, users, errorMessage } = payload;
+		const { games, usersIncluded, usersExcluded, errorMessage } = payload;
 
-		return { games, users, status, router, errorMessage };
+		return {
+			games,
+			usersIncluded,
+			usersExcluded,
+			status,
+			router,
+			errorMessage
+		};
 	}
 
 	return { status, router };

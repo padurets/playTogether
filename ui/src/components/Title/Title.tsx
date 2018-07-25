@@ -7,7 +7,7 @@ import * as Text from "../Text/Text";
 type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 type Weight = "normal" | "bold" | "lighter";
 
-interface Props extends React.HTMLAttributes<HTMLTitleElement> {
+interface Props extends React.HTMLAttributes<HTMLHeadingElement> {
 	type: TitleType;
 	weight?: Weight;
 	color?: Text.Color;
@@ -15,7 +15,14 @@ interface Props extends React.HTMLAttributes<HTMLTitleElement> {
 
 class Title extends React.PureComponent<Props> {
 	public render() {
-		const { type, children, className, color, weight = "bold" } = this.props;
+		const {
+			type,
+			children,
+			className,
+			color,
+			weight = "bold",
+			...props
+		} = this.props;
 		const Tag = type;
 		const rootClasses = cn(className, styles.root, {
 			[styles.h1]: type === "h1",
@@ -34,7 +41,11 @@ class Title extends React.PureComponent<Props> {
 			[textStyles.colorSuccess]: color === "success"
 		});
 
-		return <Tag className={rootClasses}>{children}</Tag>;
+		return (
+			<Tag {...props} className={rootClasses}>
+				{children}
+			</Tag>
+		);
 	}
 }
 

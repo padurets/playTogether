@@ -1,0 +1,51 @@
+@import "../../assets/styles/vars.css";
+
+.root {
+	margin-bottom: 20px;
+}
+
+.labelIcon {
+	display: inline-block;
+	width: 0;
+	height: 16pt;
+	position: relative;
+
+	&::before {
+		content: "";
+		border: 6px solid transparent;
+		border-radius: 2px;
+		position: absolute;
+		top: 50%;
+		left: 10px;
+		width: 1px;
+		height: 1px;
+	}
+}
+
+.label {
+	display: inline-block;
+	padding-bottom: 4px;
+
+	&:hover {
+		padding-bottom: 5px;
+	}
+}
+
+.collapsedLabel {
+	& .labelIcon {
+		&::before {
+			border-top-color: var(--colorLight);
+			border-top-width: 10px;
+		}
+	}
+}
+
+.expandedLabel {
+	& .labelIcon {
+		&::before {
+			border-bottom-color: var(--colorLight);
+			border-bottom-width: 10px;
+			top: 20%;
+		}
+	}
+}

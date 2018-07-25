@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as cn from "classnames";
 import Logo from "../Logo/Logo";
+import Pane from "../Pane/Pane";
+import Button from "../Button/Button";
 import * as styles from "./Layout.css";
 
 const Loading = () => {
@@ -8,7 +10,12 @@ const Loading = () => {
 };
 
 const ErrorMessage = () => {
-	return <div className={styles.error}>Не удалось получить данные</div>;
+	return (
+		<div className={styles.error}>
+			<Pane type="danger">Не удалось получить данные</Pane>
+			<Button onClick={() => location.reload()}>Попробовать еще раз</Button>
+		</div>
+	);
 };
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {

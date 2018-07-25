@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as cn from "classnames";
-import * as UsersInfo from "../../../../api/src/services/steam/getUsersInfo/types";
+import * as CommonGamesApi from "../../../../api/src/methods/commonGames/types";
 import Text from "../Text/Text";
 import * as styles from "./User.css";
 
 interface Props
 	extends React.HTMLAttributes<HTMLDivElement>,
-		UsersInfo.UserInfo {}
+		CommonGamesApi.User {}
 
 class User extends React.PureComponent<Props> {
 	public render() {
@@ -16,16 +16,13 @@ class User extends React.PureComponent<Props> {
 			avatar = require("./img/default_user.jpg"),
 			url,
 			status,
-			statusCode
+			requestStatus
 		} = this.props;
 		const Tag = url ? "a" : "div";
 		const mixedProps = url ? { href: url, target: "blank" } : {};
 		const rootClasses = cn(className, styles.root, {
 			[styles.pointered]: !!url
-			// [styles.warning]: statusCode !== 1
 		});
-
-		console.log("avatar", avatar);
 
 		return (
 			<Tag {...mixedProps} className={rootClasses}>
@@ -34,7 +31,7 @@ class User extends React.PureComponent<Props> {
 				</span>
 				<span className={styles.profileInfo}>
 					<Text className={styles.name}>{name}</Text>
-					{statusCode === 1 ? null : (
+					{requestStatus === 1 ? null : (
 						<Text size="sm" color="danger">
 							{status}
 						</Text>

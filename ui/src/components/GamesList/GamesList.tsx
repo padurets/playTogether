@@ -4,7 +4,7 @@ import Game from "../Game/Game";
 import * as styles from "./GamesList.css";
 
 interface Props {
-	games: CommonGamesApi.Games;
+	games: CommonGamesApi.Game[];
 }
 
 export class GamesList extends React.PureComponent<Props> {

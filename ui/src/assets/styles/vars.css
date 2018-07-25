@@ -8,4 +8,6 @@
 	--colorTextRegular: #333;
 
 	--borderRadiusRegular: 4px;
+
+	--shadowRegular: 2px 1px 6px rgba(153, 153, 153, 0.2);
 }

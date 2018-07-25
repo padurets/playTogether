@@ -26,6 +26,8 @@
 
 .error {
 	text-align: center;
+	margin: auto;
+	max-width: 500px;
 }
 
 .loader {

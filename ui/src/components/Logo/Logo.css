@@ -5,6 +5,7 @@
 	color: #444;
 	font-size: 12pt;
 	margin-bottom: 15px;
+	cursor: pointer;
 }
 
 .logo {
@@ -23,7 +24,7 @@
 
 .description {
 	background: #fff;
-	box-shadow: 2px 1px 6px rgba(153, 153, 153, 0.2);
+	box-shadow: var(--shadowRegular);
 	border-radius: var(--borderRadiusRegular);
 	padding: 7px 15px 5px 15px;
 }

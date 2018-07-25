@@ -23,3 +23,7 @@
 	background: color(var(--colorWarning) alpha(-80%));
 	color: color(var(--colorWarning) blackness(20%));
 }
+
+.shaddow {
+	box-shadow: var(--shadowRegular);
+}
