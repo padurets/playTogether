@@ -1,6 +1,6 @@
 {
   "name": "playtogether",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "api/dist/index.js",
   "scripts": {

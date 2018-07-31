@@ -3,11 +3,6 @@
  */
 
 import * as express from "express";
-// import {
-// 	UsersInfo,
-// 	UsersGames,
-// 	UserGames
-// } from "../../services/steam/getUsersInfo/types";
 import { getProfiles } from "../../services/steam/profiles/profiles";
 import {
 	getGamesDetail,

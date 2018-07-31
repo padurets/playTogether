@@ -30,10 +30,19 @@ export interface UserSteamApi {
 	personastateflags: number;
 }
 
+export interface UserVanityURLSteamApi {
+	steamid: string;
+	success: number;
+}
+
+export interface PlayersSteamApi {
+	players: UserSteamApi[];
+}
+
 export async function getId(username: string): Promise<string> {
 	const url = `ISteamUser/ResolveVanityURL/v0001/?vanityurl=${username}`;
 
-	return steamOriginApiRequest(url).then(res => {
+	return steamOriginApiRequest<UserVanityURLSteamApi>(url).then(res => {
 		const { steamid = username } = res;
 		return steamid;
 	});
@@ -69,8 +78,14 @@ export async function getUsers(steamIds: string[]): Promise<User[]> {
 		});
 	};
 
-	return steamOriginApiRequest(url)
-		.then(res => res && res.players)
+	return steamOriginApiRequest<PlayersSteamApi>(url)
+		.then(res => {
+			if (!res.hasOwnProperty("players")) {
+				throw "not correct response by PlayersSteamApi";
+			}
+
+			return res.players;
+		})
 		.then((res?: UserSteamApi[]) => {
 			if (res) {
 				const users = mapUsers(res);

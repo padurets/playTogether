@@ -2,8 +2,8 @@
  * Возвращает описание игр
  */
 
-import fetch from "node-fetch";
 import asyncMap from "../../../lib/asyncMap";
+import { steamSpyOriginApiRequest } from "../__common__/steamSpyOriginApiRequest";
 import * as redis from "../../redis/redis";
 
 export interface GameDetailSteamApi {
@@ -34,17 +34,18 @@ export interface GameTags {
 	[key: string]: number;
 }
 
-async function getGameFromSteamSpy(appId: number) {
-	const url = `http://steamspy.com/api.php?request=appdetails&appid=${appId}`;
-	return fetch(url).then(res => res.json());
-}
-
-export async function getGameDetail(appId: number) {
-	const gameKey = `game_${appId}`;
+export async function getGameDetail(
+	gameId: number
+): Promise<GameDetailSteamApi> {
+	const appid = `${gameId}`;
+	const gameKey = `game_${appid}`;
 	let gameInfo = await redis.getAsyncJson(gameKey);
 
 	if (!gameInfo) {
-		gameInfo = await getGameFromSteamSpy(appId);
+		gameInfo = await steamSpyOriginApiRequest<GameDetailSteamApi>({
+			request: "appdetails",
+			appid
+		});
 		redis.setAsyncJson(gameKey, gameInfo);
 	}
 
@@ -52,7 +53,7 @@ export async function getGameDetail(appId: number) {
 }
 
 export async function getGamesDetail(
-	appsId: number[]
+	gamesId: number[]
 ): Promise<GameDetailSteamApi[]> {
-	return await asyncMap<GameDetailSteamApi, number>(appsId, getGameDetail);
+	return await asyncMap(gamesId, getGameDetail);
 }
